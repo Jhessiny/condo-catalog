@@ -1,7 +1,6 @@
-import { type MerchantRepository } from '../../application/models'
+import { type MerchantDTO, type MerchantRepository } from '@/application/models'
 import { v4 as uuidv4 } from 'uuid'
-import { type Merchant } from '../../domain/merchant'
-import { type MerchantDTO } from '../../application/models/merchant-dto'
+import { type Merchant } from '@/domain/merchant'
 
 export class MemoryMerchantRepository implements MerchantRepository {
   private readonly merchantsList: MerchantDTO[] = []

@@ -1,18 +1,20 @@
 import { type Route } from '../application/models/route'
-import { createMerchantController } from './controllers/create-merchant-controller'
-import { listMerchantsController } from './controllers/list-merchants-controller'
+import {
+  makeCreateMerchantController,
+  makeListMerchantsController,
+} from './controllers-factories'
 
 export const routes: Route[] = [
   {
     name: 'create-merchant',
     path: '/merchants',
     method: 'post',
-    handler: createMerchantController,
+    handler: makeCreateMerchantController(),
   },
   {
     name: 'merchant-list',
     path: '/merchants',
     method: 'get',
-    handler: listMerchantsController,
+    handler: makeListMerchantsController(),
   },
 ]

@@ -5,7 +5,12 @@
     "esModuleInterop": true,
     "module": "CommonJS",
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@test/*": ["test/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]

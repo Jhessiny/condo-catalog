@@ -1,8 +1,8 @@
 /* eslint-disable accessor-pairs */
 import express, { Router, type Express } from 'express'
-import { type Server } from '../../application/models/server'
+import { type Server } from '@/application/models/server'
 import cors from 'cors'
-import { type Route } from '../../application/models/route'
+import { type Route } from '@/application/models/route'
 import bodyParser from 'body-parser'
 import { expressRequestAdapter } from './request-adapter'
 

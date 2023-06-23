@@ -1,6 +1,9 @@
 import { type Either, error, success } from '../../../shared/either'
-import { type MerchantRepository, type Service } from '../../models'
-import { type MerchantDTO } from '../../models/merchant-dto'
+import {
+  type MerchantDTO,
+  type MerchantRepository,
+  type Service,
+} from '../../models'
 
 export class ListMerchantService implements Service {
   constructor(private readonly merchantRepository: MerchantRepository) {}
