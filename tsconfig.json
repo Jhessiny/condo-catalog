@@ -6,6 +6,8 @@
     "module": "CommonJS",
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

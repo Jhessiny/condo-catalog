@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  catalog_api:
+    container_name: catalog_api
+    build: .
+    tty: true
+    ports:
+      - 3333:3333
+    networks:
+      - app-network
+    volumes:
+      - .:/home/node/app
+
+  catalog_postgres:
+    container_name: catalog_postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network

@@ -1,7 +1,7 @@
-import { type Service } from '../../../application/models'
-import { type Merchant } from '../../../domain/merchant'
-import { type Controller } from '../../models/controller'
-import { type HttpResponse, type HttpRequest } from '../../models/http'
+import { type Service } from '@/application/models'
+import { type Merchant } from '@/domain/merchant'
+import { type Controller } from '@/presentation/models/controller'
+import { type HttpResponse, type HttpRequest } from '@/presentation/models/http'
 import { badRequest, created } from '../util'
 
 export class CreateMerChantController implements Controller {
@@ -14,6 +14,7 @@ export class CreateMerChantController implements Controller {
       name: request.body.name,
       subCategory: request.body.subCategory,
       phone: request.body.phone,
+      miniBio: request.body.miniBio,
     }
     const serviceResponse = await this.service.execute(merchantData)
 
