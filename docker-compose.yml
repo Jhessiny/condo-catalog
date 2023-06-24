@@ -10,7 +10,7 @@ services:
     networks:
       - app-network
     volumes:
-      - .:/home/node/app
+      - .:/home/ubuntu/app
 
   catalog_postgres:
     container_name: catalog_postgres
