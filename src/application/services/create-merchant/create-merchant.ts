@@ -1,14 +1,17 @@
-import { Merchant } from '../../../domain/merchant'
-import { type Either, error, success } from '../../../shared/either'
-import { type MerchantRepository, type Service } from '../../models'
+import { Merchant } from '@/domain/merchant'
+import { type Either, error, success } from '@/shared/either'
+import { type MerchantRepository, type Service } from '@/application/models'
+import { type AggregateError } from '@/shared/error-aggregator'
 
 export class CreateMerchantService implements Service {
   constructor(private readonly merchantRepository: MerchantRepository) {}
 
-  public async execute(request: any): Promise<Either<Error, { id: string }>> {
+  public async execute(
+    request: any,
+  ): Promise<Either<AggregateError, { id: string }>> {
     const merchantOrError = Merchant.create(request)
     if (merchantOrError.isError()) {
-      return error(new Error('invalid'))
+      return error(merchantOrError.value)
     }
 
     const merchant = merchantOrError.value

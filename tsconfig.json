@@ -3,6 +3,7 @@
     "outDir": "dist",
     "target": "ES2020",
     "esModuleInterop": true,
+    "lib": ["ES2020"],
     "module": "CommonJS",
     "noImplicitAny": true,
     "strictNullChecks": true,

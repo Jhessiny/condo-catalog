@@ -15,7 +15,7 @@ export const forbidden = (error: Error): HttpResponse => ({
   body: error,
 })
 
-export const badRequest = (error: Error): HttpResponse => ({
+export const badRequest = (error: Error | Error[]): HttpResponse => ({
   statusCode: 400,
   body: error,
 })
