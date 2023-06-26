@@ -8,7 +8,7 @@ import {
 export class ListMerchantService implements Service {
   constructor(private readonly merchantRepository: MerchantRepository) {}
 
-  public async execute(request: any): Promise<Either<Error, MerchantDTO[]>> {
+  public async execute(): Promise<Either<Error, MerchantDTO[]>> {
     const returnValue = await this.merchantRepository.findAll()
     if (returnValue) return success(returnValue)
     return error(new Error())
