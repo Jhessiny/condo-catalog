@@ -37,9 +37,8 @@ export class Merchant {
       ValidationBuilder.value(category, 'category').required().build(),
       ValidationBuilder.value(subCategory, 'subCategory').build(),
       ValidationBuilder.value(miniBio, 'miniBio').min(10).max(600).build(),
-      ValidationBuilder.value(phone, 'phone').required().min(9).max(11).build(),
+      ValidationBuilder.value(phone, 'phone').required().min(9).max(13).build(),
     ])
-    console.log(errors?.map((err) => err?.error))
     if (errors?.length) return errors
     return null
   }
