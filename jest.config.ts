@@ -7,7 +7,7 @@ const config: Config = {
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
   transform: {
-    '.+\\.ts$': 'ts-jest',
+    '.+\\.ts$': '@swc/jest',
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
