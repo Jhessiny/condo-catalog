@@ -14,7 +14,6 @@ export class MemoryMerchantRepository implements MerchantRepository {
   }
 
   async findAll(): Promise<MerchantDTO[]> {
-    console.log(this.merchantsList)
     return this.merchantsList
   }
 }

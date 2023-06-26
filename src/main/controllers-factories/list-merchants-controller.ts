@@ -1,4 +1,4 @@
-import { ListMerchantController } from '@/presentation/controllers/list-merchants-controller copy/list-merchants-controller'
+import { ListMerchantController } from '@/presentation/controllers'
 import { ListMerchantService } from '@/application/services/list-merchants/list-merchants'
 import { type Controller } from '@/presentation/models/controller'
 import { merchantPostgresRepository } from '@/infra/typeorm/repositories'
