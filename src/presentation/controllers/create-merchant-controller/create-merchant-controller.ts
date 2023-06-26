@@ -7,7 +7,9 @@ import { type CreateMerchantDto } from '@/application/dtos'
 export class CreateMerChantController implements Controller {
   constructor(private readonly service: Service) {}
 
-  async handle(request: HttpRequest<CreateMerchantDto>): Promise<HttpResponse> {
+  async handle(
+    request: HttpRequest<CreateMerchantDto>,
+  ): Promise<HttpResponse<{ id: string }>> {
     if (!request.body) return badRequest(new Error('Invalid'))
     const merchantData: CreateMerchantDto = {
       category: request.body.category,

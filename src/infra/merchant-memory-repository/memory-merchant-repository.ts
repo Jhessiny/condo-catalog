@@ -4,7 +4,7 @@ import { type Merchant } from '@/domain/merchant'
 
 export class MemoryMerchantRepository implements MerchantRepository {
   private readonly merchantsList: MerchantDTO[] = []
-  async add(merchantData: Merchant.Data): Promise<{ id: string }> {
+  async add(merchantData: Merchant.CreateDto): Promise<{ id: string }> {
     const newMerchant: MerchantDTO = {
       id: uuidv4(),
       ...merchantData,
