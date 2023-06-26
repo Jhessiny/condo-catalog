@@ -1,7 +1,7 @@
 import { type Either, success, error } from '@/shared/either'
-import { AggregateError } from '@/shared/error-aggregator'
 import { triggerValidation } from '@/validations/validators-factory'
 import { ValidationBuilder } from '@/validations/validators/validation-builder/validation-builder'
+import { InvalidMerchantDataError } from './errors'
 
 export class Merchant {
   private readonly name: string
@@ -45,10 +45,10 @@ export class Merchant {
 
   public static create(
     dto: Merchant.CreateDto,
-  ): Either<AggregateError, Merchant> {
+  ): Either<InvalidMerchantDataError, Merchant> {
     const errors = this.validateCreateValues(dto)
     if (errors) {
-      return error(new AggregateError(errors.map((err) => err.error)))
+      return error(new InvalidMerchantDataError(errors.map((err) => err.error)))
     }
     return success(new Merchant(dto))
   }

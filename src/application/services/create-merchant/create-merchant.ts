@@ -5,14 +5,14 @@ import {
   type MerchantRepository,
   type Service,
 } from '@/application/models'
-import { type AggregateError } from '@/shared/error-aggregator'
+import { type InvalidMerchantDataError } from '@/domain/errors'
 
 export class CreateMerchantService implements Service {
   constructor(private readonly merchantRepository: MerchantRepository) {}
 
   public async execute(
     request: MerchantDTO,
-  ): Promise<Either<AggregateError, { id: string }>> {
+  ): Promise<Either<InvalidMerchantDataError, { id: string }>> {
     const merchantOrError = Merchant.create(request)
     if (merchantOrError.isError()) {
       return error(merchantOrError.value)
