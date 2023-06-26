@@ -16,7 +16,7 @@ export class MaxLengthValidation implements Validator {
     if (typeof this.value !== 'string' && !Array.isArray(this.value)) {
       return new ValidationError({
         property: this.property,
-        message: `${this.property}: Unable to validate input value.`,
+        message: `Unable to validate input value.`,
         type: ERROR_TYPES.MAX_LENGTH,
       })
     }

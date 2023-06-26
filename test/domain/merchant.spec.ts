@@ -1,5 +1,5 @@
+import { InvalidMerchantDataError } from '@/domain/errors'
 import { Merchant } from '@/domain/merchant'
-import { AggregateError } from '@/shared/error-aggregator'
 import { faker } from '@faker-js/faker'
 
 describe('Test Merchant entity', () => {
@@ -25,8 +25,7 @@ describe('Test Merchant entity', () => {
     }
     const merchant = Merchant.create(createParams)
     expect(merchant.isError()).toBe(true)
-    expect(merchant.value).toBeInstanceOf(AggregateError)
-    if (merchant.value instanceof AggregateError)
-      expect(merchant.value.errors).toHaveLength(2)
+    expect(merchant.value).toBeInstanceOf(InvalidMerchantDataError)
+    expect((merchant.value as InvalidMerchantDataError).errors).toHaveLength(2)
   })
 })

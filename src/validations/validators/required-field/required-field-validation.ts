@@ -13,7 +13,7 @@ export class RequiredValidation implements Validator {
     if (!this.value)
       return new ValidationError({
         property: this.property,
-        message: `${this.property}: ${this.message}`,
+        message: `${this.message}`,
         type: ERROR_TYPES.REQUIRED,
       })
 

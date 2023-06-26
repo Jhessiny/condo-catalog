@@ -1,10 +1,10 @@
 import { MemoryMerchantRepository } from '@/infra/merchant-memory-repository/memory-merchant-repository'
-import { CreateMerchantService } from '../../../application/services/create-merchant/create-merchant'
+import { CreateMerchantService } from '@/application/services'
 import { faker } from '@faker-js/faker'
 import { type MerchantDTO } from '@/application/models'
-import { AggregateError } from '@/shared/error-aggregator'
-import { CreateMerChantController } from '@/presentation/controllers/create-merchant-controller/create-merchant-controller'
-import { type Controller } from '@/presentation/models/controller'
+import { CreateMerChantController } from '@/presentation/controllers'
+import { type Controller } from '@/presentation/models'
+import { InvalidMerchantDataError } from '@/domain/errors'
 
 export const makeSut = (): Controller =>
   new CreateMerChantController(
@@ -35,7 +35,13 @@ describe('Test CreateMerChantController', () => {
     const sut = makeSut()
     const res = await sut.handle({ body: createParams })
     expect(res.statusCode).toBe(400)
-    expect(res.body).toBeInstanceOf(AggregateError)
-    expect('errors' in res.body && res.body.errors).toHaveLength(1)
+    expect(res.body).toBeInstanceOf(InvalidMerchantDataError)
+    expect((res.body as InvalidMerchantDataError).errors).toHaveLength(1)
+  })
+  it('should return statusCode 400 if no body is passed', async () => {
+    const sut = makeSut()
+    const res = await sut.handle({})
+    expect(res.statusCode).toBe(400)
+    expect(res.body).toBeInstanceOf(Error)
   })
 })
