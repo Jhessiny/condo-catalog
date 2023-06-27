@@ -1,6 +1,9 @@
+import { success } from './../../../shared/either'
 import { Merchant } from '../entity/merchant.entity'
-import { type MerchantDTO, type MerchantRepository } from '@/application/models'
+import { type MerchantRepository } from '@/application/models'
 import { DBTypeORMConnectionAdapter } from '../connection-adapter'
+import { type Either, error } from '@/shared/either'
+import { type MerchantDTO } from '@/domain/merchant'
 
 class MerchantPostgresRepository implements MerchantRepository {
   constructor(private readonly dbConnection: DBTypeORMConnectionAdapter) {}
@@ -21,6 +24,13 @@ class MerchantPostgresRepository implements MerchantRepository {
     const ormRepo = this.dbConnection.dataSource.getRepository(Merchant)
     const all = await ormRepo.find()
     return all as MerchantDTO[]
+  }
+
+  async findById(id: string): Promise<Either<Error, MerchantDTO>> {
+    const ormRepo = this.dbConnection.dataSource.getRepository(Merchant)
+    const one = await ormRepo.findOne({ where: { id } })
+    if (!one) return error(new Error('No merchant found'))
+    return success(one as MerchantDTO)
   }
 }
 
