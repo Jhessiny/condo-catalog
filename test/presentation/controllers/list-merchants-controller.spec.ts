@@ -9,7 +9,7 @@ import {
   ListMerchantService,
   CreateMerchantService,
 } from '@/application/services'
-import { type CreateMerchantDto } from '@/application/dtos'
+import { type CreateMerchantDTO } from '@/domain/merchant'
 
 type MakeSutProps = {
   listMerchantsController: Controller
@@ -36,7 +36,7 @@ describe('Test CreateMerChantController', () => {
   })
   it('should return success with array of 2', async () => {
     const { listMerchantsController, createMerchantController } = makeSut()
-    const createParams: CreateMerchantDto = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),

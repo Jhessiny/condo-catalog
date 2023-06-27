@@ -1,8 +1,8 @@
 import { MemoryMerchantRepository } from '@/infra/merchant-memory-repository/memory-merchant-repository'
 import { CreateMerchantService } from '@/application/services/create-merchant/create-merchant'
 import { faker } from '@faker-js/faker'
-import { type MerchantDTO } from '@/application/models'
 import { ListMerchantService } from '@/application/services/list-merchants/list-merchants'
+import { type CreateMerchantDTO } from '@/domain/merchant'
 
 describe('Test ListMerchantService', () => {
   it('should empty list when no merchant was created', async () => {
@@ -14,7 +14,7 @@ describe('Test ListMerchantService', () => {
   it('should return list of two merchants', async () => {
     const merchantRepository = new MemoryMerchantRepository()
     const createService = new CreateMerchantService(merchantRepository)
-    const createParams: MerchantDTO = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),

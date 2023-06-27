@@ -1,15 +1,15 @@
 import { MemoryMerchantRepository } from '@/infra/merchant-memory-repository/memory-merchant-repository'
 import { CreateMerchantService } from '@/application/services/create-merchant/create-merchant'
 import { faker } from '@faker-js/faker'
-import { type MerchantDTO } from '@/application/models'
 import { InvalidMerchantDataError } from '@/domain/errors'
+import { type CreateMerchantDTO } from '@/domain/merchant'
 
 describe('Test CreateMerchantService', () => {
   it('should return success on execute with correct params', async () => {
     const createService = new CreateMerchantService(
       new MemoryMerchantRepository(),
     )
-    const createParams: MerchantDTO = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),
@@ -24,7 +24,7 @@ describe('Test CreateMerchantService', () => {
     const createService = new CreateMerchantService(
       new MemoryMerchantRepository(),
     )
-    const createParams: MerchantDTO = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),

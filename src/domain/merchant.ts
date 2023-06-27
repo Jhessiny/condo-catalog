@@ -2,6 +2,7 @@ import { type Either, success, error } from '@/shared/either'
 import { triggerValidation } from '@/validations/validators-factory'
 import { ValidationBuilder } from '@/validations/validators/validation-builder/validation-builder'
 import { InvalidMerchantDataError } from './errors'
+import { type ValidationError } from '@/validations/models/validation-error'
 
 export class Merchant {
   private readonly name: string
@@ -16,7 +17,7 @@ export class Merchant {
     subCategory,
     phone,
     miniBio,
-  }: Merchant.CreateDto) {
+  }: CreateMerchantDTO) {
     this.name = name
     this.category = category
     this.subCategory = subCategory
@@ -31,7 +32,7 @@ export class Merchant {
     subCategory,
     phone,
     miniBio,
-  }: Merchant.CreateDto): any[] | null {
+  }: CreateMerchantDTO): ValidationError[] | null {
     const errors = triggerValidation([
       ValidationBuilder.value(name, 'name').required().min(3).build(),
       ValidationBuilder.value(category, 'category').required().build(),
@@ -44,22 +45,25 @@ export class Merchant {
   }
 
   public static create(
-    dto: Merchant.CreateDto,
+    dto: CreateMerchantDTO,
   ): Either<InvalidMerchantDataError, Merchant> {
     const errors = this.validateCreateValues(dto)
     if (errors) {
-      return error(new InvalidMerchantDataError(errors.map((err) => err.error)))
+      return error(
+        new InvalidMerchantDataError(errors?.map((err) => err?.error)),
+      )
     }
     return success(new Merchant(dto))
   }
 }
 
-export namespace Merchant {
-  export type CreateDto = {
-    name: string
-    category: string
-    subCategory?: string
-    phone: string
-    miniBio?: string
-  }
+export type MerchantDTO = {
+  id: string
+  name: string
+  category: string
+  subCategory?: string
+  phone: string
+  miniBio?: string
 }
+
+export type CreateMerchantDTO = Omit<MerchantDTO, 'id'>

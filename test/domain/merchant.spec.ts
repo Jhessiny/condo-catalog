@@ -1,10 +1,10 @@
 import { InvalidMerchantDataError } from '@/domain/errors'
-import { Merchant } from '@/domain/merchant'
+import { type CreateMerchantDTO, Merchant } from '@/domain/merchant'
 import { faker } from '@faker-js/faker'
 
 describe('Test Merchant entity', () => {
   it('should create a Merchant when passing the correct params', () => {
-    const createParams: Merchant.CreateDto = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),
@@ -16,7 +16,7 @@ describe('Test Merchant entity', () => {
     expect(merchant.value).toBeInstanceOf(Merchant)
   })
   it('should return error when passing longer miniBio and phone params', () => {
-    const createParams: Merchant.CreateDto = {
+    const createParams: CreateMerchantDTO = {
       name: faker.word.noun(),
       category: faker.word.noun(),
       subCategory: faker.word.noun(),

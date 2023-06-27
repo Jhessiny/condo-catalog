@@ -1,17 +1,13 @@
-import { Merchant } from '@/domain/merchant'
+import { type CreateMerchantDTO, Merchant } from '@/domain/merchant'
 import { type Either, error, success } from '@/shared/either'
-import {
-  type MerchantDTO,
-  type MerchantRepository,
-  type Service,
-} from '@/application/models'
+import { type MerchantRepository, type Service } from '@/application/models'
 import { type InvalidMerchantDataError } from '@/domain/errors'
 
 export class CreateMerchantService implements Service {
   constructor(private readonly merchantRepository: MerchantRepository) {}
 
   public async execute(
-    request: MerchantDTO,
+    request: CreateMerchantDTO,
   ): Promise<Either<InvalidMerchantDataError, { id: string }>> {
     const merchantOrError = Merchant.create(request)
     if (merchantOrError.isError()) {
