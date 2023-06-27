@@ -17,7 +17,7 @@ export class MinLengthValidation implements Validator {
       return new ValidationError({
         property: this.property,
         message: `Unable to validate input value.`,
-        type: ERROR_TYPES.MIN_LENGTH,
+        name: ERROR_TYPES.MIN_LENGTH,
       })
 
     const inputData = this.value as string
@@ -25,7 +25,7 @@ export class MinLengthValidation implements Validator {
       return new ValidationError({
         property: this.property,
         message: `${this.message}`,
-        type: ERROR_TYPES.MIN_LENGTH,
+        name: ERROR_TYPES.MIN_LENGTH,
       })
 
     return null

@@ -4,10 +4,11 @@ export enum ERROR_TYPES {
   MAX_LENGTH = 'MAX_LENGTH_ERROR',
   DEPENDENCY = 'DEPENDENCY_ERROR',
   RELATION = 'RELATION_ERROR',
+  REGEX = 'REGEX_ERROR',
 }
 
 export type ValidationErrorType = {
   message: string
   property?: string
-  type: ERROR_TYPES
+  name: ERROR_TYPES
 }

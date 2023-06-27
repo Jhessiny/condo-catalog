@@ -17,7 +17,7 @@ export class MaxLengthValidation implements Validator {
       return new ValidationError({
         property: this.property,
         message: `Unable to validate input value.`,
-        type: ERROR_TYPES.MAX_LENGTH,
+        name: ERROR_TYPES.MAX_LENGTH,
       })
     }
 
@@ -26,7 +26,7 @@ export class MaxLengthValidation implements Validator {
       return new ValidationError({
         property: this.property,
         message: `${this.message}`,
-        type: ERROR_TYPES.MAX_LENGTH,
+        name: ERROR_TYPES.MAX_LENGTH,
       })
 
     return null

@@ -14,7 +14,7 @@ export class RequiredValidation implements Validator {
       return new ValidationError({
         property: this.property,
         message: `${this.message}`,
-        type: ERROR_TYPES.REQUIRED,
+        name: ERROR_TYPES.REQUIRED,
       })
 
     return null
